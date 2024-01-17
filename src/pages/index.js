@@ -20,7 +20,7 @@ export default function Home() {
         </div>
       </div>
       
-      {/* Bio Section */}
+      {/* Bio */}
       <div className='container mt-4'>
         <h2>
           Who Are We?
@@ -44,7 +44,7 @@ export default function Home() {
         </div>
       </div>
       
-      {/* Current Event section */}
+      {/* Current Event */}
       <div className='container mt-4'>
         <h2>Current Event</h2>
         <div className='row'>
@@ -65,7 +65,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Recent events section */}
+      {/* Recent events */}
       <div className='container mt-4 py-2'>
         <h2>
           Recent Events
@@ -78,7 +78,7 @@ export default function Home() {
               className='img-fluid'
             />
           </div>
-          <div className='col-5 mx-3'>
+          <div className='col-5'>
             <p>Boss of the week ➡️</p>
             <Image
               src={vetionSitting}
@@ -153,8 +153,8 @@ export default function Home() {
       {/* Tools Section */}
       <div className='container mt-4 carousel'>
         <h2>Tools</h2>
-        <div className='d-flex flex-row flex-nowrap overflow-auto'>
-        <div className='col-4 mx-3 bg-image card'>
+        <div className='d-flex flex-row flex-nowrap overflow-auto gap-4'>
+        <div className='col-4 bg-image card'>
             <Image
               src={manInFrontOfDragon}
               className='w-100'
@@ -163,7 +163,7 @@ export default function Home() {
               <h4 className='text-danger'>Custom heading</h4>
             </div>
           </div>
-          <div className='col-4 mx-3 bg-image card'>
+          <div className='col-4 bg-image card'>
             <Image
               src={manInFrontOfDragon}
               className='w-100'
@@ -172,7 +172,7 @@ export default function Home() {
               <h4 className='text-danger'>Custom heading</h4>
             </div>
           </div>
-          <div className='col-4 mx-3 bg-image card'>
+          <div className='col-4 bg-image card'>
             <Image
               src={manInFrontOfDragon}
               className='w-100'
@@ -180,6 +180,38 @@ export default function Home() {
             <div class="card-img-overlay text-center">
               <h4 className='text-danger'>Custom heading</h4>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Recent Activities */}
+      <div className='container mt-4 carousel'>
+        <h2>Recent Activities</h2>
+        <div className='d-flex flex-row flex-nowrap overflow-auto gap-3 align-items-center' style={{height: 200}}>
+          <div className='col-3 bg-success rounded p-2 text-center'>
+            <h5>Username</h5>
+            <p>Date</p>
+            <p>Achievement</p>
+          </div>
+          <div className='col-3 bg-success rounded p-2 text-center'>
+            <h5>Username</h5>
+            <p>Date</p>
+            <p>Achievement</p>
+          </div>
+          <div className='col-3 bg-success rounded p-2 text-center'>
+            <h5>Username</h5>
+            <p>Date</p>
+            <p>Achievement</p>
+          </div>
+          <div className='col-3 bg-success rounded p-2 text-center'>
+            <h5>Username</h5>
+            <p>Date</p>
+            <p>Achievement</p>
+          </div>
+          <div className='col-3 bg-success rounded p-2 text-center'>
+            <h5>Username</h5>
+            <p>Date</p>
+            <p>Achievement</p>
           </div>
         </div>
       </div>
