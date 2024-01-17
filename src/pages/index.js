@@ -99,7 +99,7 @@ export default function Home() {
           Recent Events
         </h2>
         <div className='d-flex flex-row flex-nowrap overflow-auto gap-3'>
-          <div className='col-5' style={{minWidth: 290}} style={{minWidth: 290}}>
+          <div className='col-5' style={{minWidth: 290}}>
             <p>Boss of the week ➡️</p>
             <Image
               src={vetionSitting}
