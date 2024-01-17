@@ -4,15 +4,38 @@ import teaJumping from '../../images/teaJumping.png'
 import vetionSitting from '../../images/vetionSitting.png'
 import discordIcon from '../../images/discordIcon.svg'
 import manInFrontOfDragon from '../../images/manInFrontOfDragon.jpeg'
+import loginBackground from '../../images/loginBackground.png'
+import vetionAndDragonBackground from '../../images/vetionAndDragonBackground.png'
+import voidwakerBackground from '../../images/voidwakerBackground.png'
+import dt2Background from '../../images/dt2Background.png'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
-    <div className='py-5' style={{backgroundColor: '#B9C6B4', color: '#FCFF00'}}>
+    <div className='py-5 has-bg-img' style={{color: '#FCFF00'}}>
+      
+      <div className='position-absolute opacity-50 bg-image' style={{zIndex: -10}}>
+        <Image
+          className='bg-image img-fluid'
+          src={loginBackground}
+        />
+        <Image
+          className='bg-image img-fluid'
+          src={vetionAndDragonBackground}
+        />
+        <Image
+          className='bg-image img-fluid'
+          src={voidwakerBackground}
+        />
+        <Image
+          className='bg-image img-fluid'
+          src={dt2Background}
+        />
+      </div>
 
       {/* Header */}
-      <div className='container'>
+      <div className='container has-bg-img'>
         <div className='row'>
           <div className='d-flex col-12 justify-content-center align-items-center rounded' style={{backgroundColor: '#768271', height: 100}}>
             <h1 className='text-center'>Tea: A Place For Mains, Irons, and Degens</h1>
@@ -21,7 +44,7 @@ export default function Home() {
       </div>
       
       {/* Bio */}
-      <div className='container mt-4'>
+      <div className='container mt-4 has-bg-img'>
         <h2>
           Who Are We?
         </h2>
@@ -234,3 +257,6 @@ export default function Home() {
     </div>
   )
 }
+
+
+// dog licking a toothbrush, 2d, cartoon
