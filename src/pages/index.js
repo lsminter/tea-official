@@ -9,13 +9,13 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
-    <div className='my-5 bg-teal text-yellow'>
+    <div className='py-5' style={{backgroundColor: '#B9C6B4', color: '#FCFF00'}}>
 
       {/* Header */}
-      <div className='container bg-teal text-yellow'>
+      <div className='container'>
         <div className='row'>
-          <div className='col-12 text-center mb-5'>
-            <h1>Tea: Mains, Irons, and Degens</h1>
+          <div className='d-flex col-12 justify-content-center align-items-center rounded' style={{backgroundColor: '#768271', height: 100}}>
+            <h1 className='text-center'>Tea: A Place For Mains, Irons, and Degens</h1>
           </div>
         </div>
       </div>
@@ -38,7 +38,7 @@ export default function Home() {
             <Image 
               src={teaJumping}
               alt="clan members jumping in clan hall"
-              className='img-fluid'
+              className='img-fluid rounded'
             />
           </div>
         </div>
@@ -56,7 +56,7 @@ export default function Home() {
           <div className='col-4'>
             <Image
               src={vetionSitting}
-              className='img-fluid'
+              className='img-fluid rounded'
               alt="boss or skill of the week"
             />
           </div>
@@ -88,7 +88,7 @@ export default function Home() {
               alt='boss or skill icon of previous event'
             />
           </div>
-          <div className='col-5 mx-3'>
+          <div className='col-5'>
             <p>Boss of the week ➡️</p>
             <Image
               src={vetionSitting}
@@ -96,7 +96,7 @@ export default function Home() {
               alt='boss or skill icon of previous event'
             />
           </div>
-          <div className='col-5 mx-3'>
+          <div className='col-5'>
             <p>Boss of the week ➡️</p>
             <Image
               src={vetionSitting}
