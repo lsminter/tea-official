@@ -19,18 +19,22 @@ export default function Home() {
         <Image
           className='bg-image img-fluid'
           src={loginBackground}
+          alt="default login screen for old school runescape"
         />
         <Image
           className='bg-image img-fluid'
           src={vetionAndDragonBackground}
+          alt="blender image of vetion and a dragon"
         />
         <Image
           className='bg-image img-fluid'
           src={voidwakerBackground}
+          alt="blender image of a character holding a voidwaker"
         />
         <Image
           className='bg-image img-fluid'
           src={dt2Background}
+          alt="login backgroudn for desert treasure two release"
         />
       </div>
 
@@ -138,7 +142,7 @@ export default function Home() {
               Come Join Us!
             </h2>
             <p>
-              The only requirement for you to join is that you respect the other members and behave yourself. We&apos;re currently looking for new members! If you&apos;re looking for a great community to join, you can find us by searching for "Tea" in the clan tab (green smiley face tab).
+              The only requirement for you to join is that you respect the other members and behave yourself. We&apos;re currently looking for new members! If you&apos;re looking for a great community to join, you can find us by searching for &ldquo;Tea&ldquo; in the clan tab (green smiley face tab).
             </p>
           </div>
           <Image src={discordIcon} className='col-2 img-fluid' alt="Discord Icon"/>
