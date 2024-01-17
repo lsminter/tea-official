@@ -51,7 +51,7 @@ export default function Home() {
         <div className='row align-items-center justify-content-center'>
           <div className='col-7'>
             <p>
-            We're a friendly bunch of about 100 active members. There is plenty of banter, but all in jest. We enjoy a wide range of content including skilling, bossing, and stuff just for fun. We have a decent spread of abilities with many folk interested god wars, raids, inferno, and more... We're currently undefeated in clan vs. clan bingo events, and we host skill and boss of the week events within the clan on a biweekly basis.
+            We&apos;re a friendly bunch of about 100 active members. There is plenty of banter, but all in jest. We enjoy a wide range of content including skilling, bossing, and stuff just for fun. We have a decent spread of abilities with many folk interested god wars, raids, inferno, and more... We&apos;re currently undefeated in clan vs. clan bingo events, and we host skill and boss of the week events within the clan on a biweekly basis.
             </p>
             <p>
             Cheers from the clan leader, Harry!
@@ -138,7 +138,7 @@ export default function Home() {
               Come Join Us!
             </h2>
             <p>
-              The only requirement for you to join is that you respect the other members and behave yourself. We're currently looking for new members! If you're looking for a great community to join, you can find us by searching for "Tea" in the clan tab (green smiley face tab).
+              The only requirement for you to join is that you respect the other members and behave yourself. We&apos;re currently looking for new members! If you&apos;re looking for a great community to join, you can find us by searching for "Tea" in the clan tab (green smiley face tab).
             </p>
           </div>
           <Image src={discordIcon} className='col-2 img-fluid' alt="Discord Icon"/>
@@ -150,7 +150,7 @@ export default function Home() {
         <h2>Looking For Competition?</h2>
         <div className='row'>
           <div className='col-6'>
-            <p>We do Clan vs. Clan competitions! If you have a clan and are looking for some fun competition, fill out the form and let us know what you're looking for.</p>
+            <p>We do Clan vs. Clan competitions! If you have a clan and are looking for some fun competition, fill out the form and let us know what you&apos;re looking for.</p>
           </div>
         </div>
         <div className='row'>
@@ -251,10 +251,18 @@ export default function Home() {
       {/* Footer */}
       <div className='container my-5'>
         <div className='row text-center'>
-          <h2>We'll See You In Game!</h2>
+          <h2>We&apos;ll See You In Game!</h2>
         </div>
       </div>
+    
+      <p>
+        <a className='text-white text-decoration-none' href="https://github.com/lsminter">
+          Site by Lucas Minter
+        </a>
+      </p>
+
     </div>
+    
   )
 }
 
