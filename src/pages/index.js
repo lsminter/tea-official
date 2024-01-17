@@ -9,10 +9,10 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
-    <div className='my-5'>
+    <div className='my-5 bg-teal text-yellow'>
 
       {/* Header */}
-      <div className='container'>
+      <div className='container bg-teal text-yellow'>
         <div className='row'>
           <div className='col-12 text-center mb-5'>
             <h1>Tea: Mains, Irons, and Degens</h1>
@@ -57,6 +57,7 @@ export default function Home() {
             <Image
               src={vetionSitting}
               className='img-fluid'
+              alt="boss or skill of the week"
             />
           </div>
           <div className='col-8'>
@@ -70,33 +71,37 @@ export default function Home() {
         <h2>
           Recent Events
         </h2>
-        <div className='d-flex flex-row flex-nowrap overflow-auto'>
-          <div className='col-5 mr-3'>
+        <div className='d-flex flex-row flex-nowrap overflow-auto gap-3'>
+          <div className='col-5'>
             <p>Boss of the week ➡️</p>
             <Image
               src={vetionSitting}
-              className='img-fluid'
+              className='img-fluid rounded rounded'
+              alt='boss or skill icon of previous event'
             />
           </div>
           <div className='col-5'>
             <p>Boss of the week ➡️</p>
             <Image
               src={vetionSitting}
-              className='img-fluid'
+              className='img-fluid rounded'
+              alt='boss or skill icon of previous event'
             />
           </div>
           <div className='col-5 mx-3'>
             <p>Boss of the week ➡️</p>
             <Image
               src={vetionSitting}
-              className='img-fluid'
+              className='img-fluid rounded'
+              alt='boss or skill icon of previous event'
             />
           </div>
           <div className='col-5 mx-3'>
             <p>Boss of the week ➡️</p>
             <Image
               src={vetionSitting}
-              className='img-fluid'
+              className='img-fluid rounded'
+              alt='boss or skill icon of previous event'
             />
           </div>
         </div>
@@ -113,7 +118,7 @@ export default function Home() {
               The only requirement for you to join is that you respect the other members and behave yourself. We're currently looking for new members! If you're looking for a great community to join, you can find us by searching for "Tea" in the clan tab (green smiley face tab).
             </p>
           </div>
-          <Image src={discordIcon} className='col-2 img-fluid'/>
+          <Image src={discordIcon} className='col-2 img-fluid' alt="Discord Icon"/>
         </div>
       </div>
 
@@ -158,8 +163,9 @@ export default function Home() {
             <Image
               src={manInFrontOfDragon}
               className='w-100'
+              alt='man with pickaxe standing infront of a dragon'
             />
-            <div class="card-img-overlay text-center">
+            <div className="card-img-overlay text-center">
               <h4 className='text-danger'>Custom heading</h4>
             </div>
           </div>
@@ -167,8 +173,9 @@ export default function Home() {
             <Image
               src={manInFrontOfDragon}
               className='w-100'
+              alt='man with pickaxe standing infront of a dragon'
             />
-            <div class="card-img-overlay text-center">
+            <div className="card-img-overlay text-center">
               <h4 className='text-danger'>Custom heading</h4>
             </div>
           </div>
@@ -176,8 +183,9 @@ export default function Home() {
             <Image
               src={manInFrontOfDragon}
               className='w-100'
+              alt='man with pickaxe standing infront of a dragon'
             />
-            <div class="card-img-overlay text-center">
+            <div className="card-img-overlay text-center">
               <h4 className='text-danger'>Custom heading</h4>
             </div>
           </div>
@@ -216,6 +224,13 @@ export default function Home() {
         </div>
       </div>
 
+
+      {/* Footer */}
+      <div className='container my-5'>
+        <div className='row text-center'>
+          <h2>We'll See You In Game!</h2>
+        </div>
+      </div>
     </div>
   )
 }
