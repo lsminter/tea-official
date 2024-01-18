@@ -303,7 +303,6 @@ export default function Home() {
         {exampleAchievements.slice(0,5).map((achievement) => {
             return(
               <div key={achievement.name} className='col-3 bg-success rounded p-2 text-center' style={{width: 250, height: 150}}>
-                {console.log(achievement)}
                 <h5>{achievement.player.username}</h5>
                 <p>{achievement.createdAt}</p>
                 <p>{achievement.name}</p>
