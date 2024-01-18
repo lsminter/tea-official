@@ -190,20 +190,20 @@ export default function Home() {
               <div className='col-12 col-lg-6'>
                 <label>Clan Name: 
                   <div className='mb-3'>
-                    <input type='text' value={clanName} onChange={e => setClanName(e.target.value)}></input>
+                    <input type='text' value={clanName} onChange={e => setClanName(e.target.value)} required></input>
                   </div>
                 </label>
               </div>
               <div className='col-12 col-lg-6'>
                 <label>Your RSN or Discord Name: </label>
                 <div className='mb-2'>
-                  <input type='text' name='rsn' value={rsName} onChange={e => setRsName(e.target.value)}></input>
+                  <input type='text' name='rsn' value={rsName} onChange={e => setRsName(e.target.value)} required></input>
                 </div>
               </div>
             </div>
             <div className='col-12 col-lg-9'>
               <label>Tell us about your clan and competition:</label>
-              <textarea className='w-100 h-75' name='message' value={competition} onChange={e => setCompetition(e.target.value)} />
+              <textarea className='w-100 h-75' name='message' value={competition} onChange={e => setCompetition(e.target.value)} required/>
             </div>
             <div className='col-3 h-100 mt-4'>
               <button className='w-100 h-50 btn btn-primary' type='submit'>Submit!</button>
