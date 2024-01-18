@@ -25,7 +25,7 @@ export default function Home() {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log({clanName, rsName, competition})
-    axios.post(`${webhook}`, 
+    axios.post(webhook, 
       {
         "username": "Mint Tea",
         "channel_id": channelId,
