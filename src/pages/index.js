@@ -190,7 +190,7 @@ export default function Home() {
         <div className='d-flex flex-row flex-nowrap overflow-auto gap-3'>
           {exampleData.data.slice(0,5).map((events) => {
             return(
-              <div className='col-5' style={{minWidth: 290}}>
+              <div key={events.id} className='col-5' style={{minWidth: 290}}>
                 <a href={`https://api.wiseoldman.net/v2/competitions/${events.id}`}>
                   <p>{events.title} ➡️</p>
                   <Image
@@ -302,7 +302,7 @@ export default function Home() {
         <div className='d-flex flex-row flex-nowrap overflow-auto gap-3 align-items-center'>
         {exampleAchievements.slice(0,5).map((achievement) => {
             return(
-              <div className='col-3 bg-success rounded p-2 text-center' style={{width: 250, height: 150}}>
+              <div key={achievement.name} className='col-3 bg-success rounded p-2 text-center' style={{width: 250, height: 150}}>
                 {console.log(achievement)}
                 <h5>{achievement.player.username}</h5>
                 <p>{achievement.createdAt}</p>
