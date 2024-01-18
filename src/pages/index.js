@@ -1,9 +1,14 @@
 import { Inter } from 'next/font/google'
 import Image from 'next/image'
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { toast } from 'react-hot-toast';
 import { Toaster } from "react-hot-toast";
+
+import oldManData from '../../library/wiseoldman';
+import {exampleData} from '../../library/exampleData';
+import {exampleEventData} from '../../library/exampleEventData'
+import {exampleAchievements} from '../../library/exampleAchievements'
 
 import teaJumping from '../../images/teaJumping.png'
 import vetionSitting from '../../images/vetionSitting.png'
@@ -15,11 +20,28 @@ import voidwakerBackground from '../../images/voidwakerBackground.png'
 import dt2Background from '../../images/dt2Background.png'
 
 const inter = Inter({ subsets: ['latin'] })
-// add toast for popup after submitting form
+
 export default function Home() {
   const [clanName, setClanName] = useState('')
   const [rsName, setRsName] = useState('')
   const [competition, setCompetition] = useState('')
+  const [compData, setCompData] = useState()
+
+  // Commented these two out due to too many api calls. I'll need to swap recentComp and topThree to api calls using oldmanData.
+  // oldManData('competitions').then((res) => setCompData(res.data[0]))
+  // console.log(compData)
+
+  // recentComp will be our regular api call to https://api.wiseoldman.net/v2/groups/651/competitions, getting the first competition in the array. 
+  const recentComp = exampleData.data[0]
+
+  // These are used to determin if the ending date in the competition is a bigger number than the current date. These are used in the conditional rendering down in the Current Event section.
+  const endingCompDate = Date.parse(recentComp.endsAt)
+  const currentDate = Date.now()
+
+  // exampleEventData will need to be a different api call to exampleData. Example data will give us the competition id needed for the top three api call. https://api.wiseoldman.net/v2/competitions/${id}
+  const topThree = exampleEventData.participations.slice(0,3).map((players) => {
+    return players.player.username
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -112,23 +134,50 @@ export default function Home() {
       {/* Current Event */}
       <div className='container mt-4'>
         <h2>Current Event</h2>
-        <div className='row'>
-          <div className='col-3'>
-            <p>Boss of the week ➡️</p>
+        {/* If endingCompDate is bigger than the currentDate, there is a competition currently running. To get this running on prod, the variables above will need to be changed. */}
+        {endingCompDate < currentDate ? (
+          <div>
+            <div className='row'>
+              <div className='col-5 col-sm-6'>
+                <p>The current event is: {recentComp.title} ➡️</p>
+              </div>
+            </div>
+            <div className='row'>
+              <div className='col-12 col-md-4'>
+                <Image
+                  src={vetionSitting}
+                  className='img-fluid rounded'
+                  alt="boss or skill of the week"
+                />
+              </div>
+              <div className='col-12 col-md-8'>
+                <p>We have a competition running right now! This competition is on {recentComp.metric}. Check out the scores on <a href={`https://www.wiseoldman.net/competitions/${recentComp.id}`}>wiseoldman.net</a>. The current top three playres are "{topThree[0]}" in first, "{topThree[1]}" in second, and "{topThree[2]}" brining up third place.</p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className='row'>
-          <div className='col-12 col-md-4'>
-            <Image
-              src={vetionSitting}
-              className='img-fluid rounded'
-              alt="boss or skill of the week"
-            />
+        ) : (
+          <div>
+            <div className='row'>
+              <div className='col-5 col-sm-6'>
+                <p>The previous event was: {recentComp.title} ➡️</p>
+              </div>
+            </div>
+            <div className='row'>
+              <div className='col-12 col-md-4'>
+                <Image
+                  src={vetionSitting}
+                  className='img-fluid rounded'
+                  alt="boss or skill of the week"
+                />
+              </div>
+              <div className='col-12 col-md-8'>
+                <p>We don't have a competition running right now. The most recent competition was {recentComp.title}. Check out the scores on <a href={`https://www.wiseoldman.net/competitions/${recentComp.id}`}>wiseoldman.net</a>. The top three players were "{topThree[0]}" in first, "{topThree[1]}" in second, and "{topThree[2]}" brining up third place.</p>
+              </div>
+            </div>
           </div>
-          <div className='col-12 col-md-8'>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquam aliquam justo, a gravida tellus fermentum non. Suspendisse metus nunc, placerat fringilla tristique ac, cursus non massa. Aenean nec urna nibh. Integer gravida consectetur consequat. Maecenas dignissim rhoncus lorem, sed tempus risus posuere ac. Pellentesque quis augue porttitor lorem pellentesque feugiat vel quis dolor. Proin auctor tellus eget lectus tristique, eu blandit purus feugiat. In ut felis quis risus semper aliquet sit amet sit amet odio. Nam sed justo dui. Vestibulum eget consequat purus.</p>
-          </div>
-        </div>
+        )
+
+        }
       </div>
 
       {/* Recent events */}
@@ -137,38 +186,20 @@ export default function Home() {
           Recent Events
         </h2>
         <div className='d-flex flex-row flex-nowrap overflow-auto gap-3'>
-          <div className='col-5' style={{minWidth: 290}}>
-            <p>Boss of the week ➡️</p>
-            <Image
-              src={vetionSitting}
-              className='img-fluid rounded rounded'
-              alt='boss or skill icon of previous event'
-            />
-          </div>
-          <div className='col-5' style={{minWidth: 290}}>
-            <p>Boss of the week ➡️</p>
-            <Image
-              src={vetionSitting}
-              className='img-fluid rounded'
-              alt='boss or skill icon of previous event'
-            />
-          </div>
-          <div className='col-5' style={{minWidth: 290}}>
-            <p>Boss of the week ➡️</p>
-            <Image
-              src={vetionSitting}
-              className='img-fluid rounded'
-              alt='boss or skill icon of previous event'
-            />
-          </div>
-          <div className='col-5' style={{minWidth: 290}}>
-            <p>Boss of the week ➡️</p>
-            <Image
-              src={vetionSitting}
-              className='img-fluid rounded'
-              alt='boss or skill icon of previous event'
-            />
-          </div>
+          {exampleData.data.slice(0,5).map((events) => {
+            return(
+              <div className='col-5' style={{minWidth: 290}}>
+                <a href={`https://api.wiseoldman.net/v2/competitions/${events.id}`}>
+                  <p>{events.title} ➡️</p>
+                  <Image
+                    src={vetionSitting}
+                    className='img-fluid rounded rounded'
+                    alt='boss or skill icon of previous event'
+                  />
+                </a>
+              </div>
+            )
+          })}
         </div>
       </div>
 
@@ -180,10 +211,12 @@ export default function Home() {
               Come Join Us!
             </h2>
             <p>
-              The only requirement for you to join is that you respect the other members and behave yourself. We&apos;re currently looking for new members! If you&apos;re looking for a great community to join, you can find us by searching for &ldquo;Tea&ldquo; in the clan tab (green smiley face tab).
+              The only requirement for you to join is that you respect the other members and behave yourself. We&apos;re currently looking for new members! If you&apos;re looking for a great community to join, you can find us by searching for &ldquo;Tea&ldquo; in the clan tab (green smiley face tab). Just click on the Discord Image.
             </p>
           </div>
-          <Image src={discordIcon} className='col-12 col-md-2 img-fluid' style={{width: 200}} alt="Discord Icon"/>
+          <a href="https://discord.gg/tea-stain" className='col-12 col-md-2 link-success' style={{width: 200}}>
+            <Image src={discordIcon} className='img-fluid' alt="Discord Icon"/>
+          </a>
         </div>
       </div>
 
@@ -263,33 +296,19 @@ export default function Home() {
 
       {/* Recent Activities */}
       <div className='container mt-4 carousel'>
-        <h2>Recent Activities</h2>
-        <div className='d-flex flex-row flex-nowrap overflow-auto gap-3 align-items-center' style={{height: 200}}>
-          <div className='col-3 bg-success rounded p-2 text-center' style={{width: 250}}>
-            <h5>Username</h5>
-            <p>Date</p>
-            <p>Achievement</p>
-          </div>
-          <div className='col-3 bg-success rounded p-2 text-center' style={{width: 250}}>
-            <h5>Username</h5>
-            <p>Date</p>
-            <p>Achievement</p>
-          </div>
-          <div className='col-3 bg-success rounded p-2 text-center' style={{width: 250}}>
-            <h5>Username</h5>
-            <p>Date</p>
-            <p>Achievement</p>
-          </div>
-          <div className='col-3 bg-success rounded p-2 text-center' style={{width: 250}}>
-            <h5>Username</h5>
-            <p>Date</p>
-            <p>Achievement</p>
-          </div>
-          <div className='col-3 bg-success rounded p-2 text-center' style={{width: 250}}>
-            <h5>Username</h5>
-            <p>Date</p>
-            <p>Achievement</p>
-          </div>
+        <h2>Recent Achievements</h2>
+        <div className='d-flex flex-row flex-nowrap overflow-auto gap-3 align-items-center'>
+        {exampleAchievements.slice(0,5).map((achievement) => {
+            return(
+              <div className='col-3 bg-success rounded p-2 text-center' style={{width: 250, height: 150}}>
+                {console.log(achievement)}
+                <h5>{achievement.player.username}</h5>
+                <p>{achievement.createdAt}</p>
+                <p>{achievement.name}</p>
+              </div>
+            )
+          })}
+          
         </div>
       </div>
 
