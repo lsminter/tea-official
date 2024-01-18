@@ -1,5 +1,8 @@
 import { Inter } from 'next/font/google'
 import Image from 'next/image'
+import axios from 'axios'
+import { useState } from 'react'
+
 import teaJumping from '../../images/teaJumping.png'
 import vetionSitting from '../../images/vetionSitting.png'
 import discordIcon from '../../images/discordIcon.svg'
@@ -9,9 +12,37 @@ import vetionAndDragonBackground from '../../images/vetionAndDragonBackground.pn
 import voidwakerBackground from '../../images/voidwakerBackground.png'
 import dt2Background from '../../images/dt2Background.png'
 
-const inter = Inter({ subsets: ['latin'] })
+const webhook = process.env.NEXT_PUBLIC_WEBHOOK
+const channelId = process.env.NEXT_PUBLIC_CHANNEL_ID
 
+const inter = Inter({ subsets: ['latin'] })
+// add toast for popup after submitting form
 export default function Home() {
+  const [clanName, setClanName] = useState('')
+  const [rsName, setRsName] = useState('')
+  const [competition, setCompetition] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log({clanName, rsName, competition})
+    axios.post(`${webhook}`, 
+      {
+        "username": "Mint Tea",
+        "channel_id": channelId,
+        "embeds": [{
+          "fields": [
+            {"name": "RSN",
+            "value": `${rsName}`},
+            {"name": "Clan Name",
+            "value": `${clanName}`},
+            {"name": "Message",
+            "value": `${competition}`}
+          ]
+        }]
+      }
+    )
+  }
+
   return (
     <div className='py-5 has-bg-img' style={{color: '#FCFF00'}}>
       
@@ -157,29 +188,32 @@ export default function Home() {
             <p>We do Clan vs. Clan competitions! If you have a clan and are looking for some fun competition, fill out the form and let us know what you&apos;re looking for.</p>
           </div>
         </div>
-        <div className='row'>
-          <div className='col-12 col-lg-3'>
-            <div className='col-12 col-lg-6'>
-              <p>Clan Name: </p>
-              <div className='mb-3'>
-                <input></input>
+        <form method="post" onSubmit={handleSubmit}>
+          <div className='row'>
+            <div className='col-12 col-lg-3'>
+              <div className='col-12 col-lg-6'>
+                <label>Clan Name: 
+                  <div className='mb-3'>
+                    <input type='text' value={clanName} onChange={e => setClanName(e.target.value)}></input>
+                  </div>
+                </label>
+              </div>
+              <div className='col-12 col-lg-6'>
+                <label>Your RSN or Discord Name: </label>
+                <div className='mb-2'>
+                  <input type='text' name='rsn' value={rsName} onChange={e => setRsName(e.target.value)}></input>
+                </div>
               </div>
             </div>
-            <div className='col-12 col-lg-6'>
-              <p>Your RSN or Discord Name: </p>
-              <div className='mb-2'>
-                <input></input>
-              </div>
+            <div className='col-12 col-lg-9'>
+              <label>Tell us about your clan and competition:</label>
+              <textarea className='w-100 h-75' name='message' value={competition} onChange={e => setCompetition(e.target.value)} />
+            </div>
+            <div className='col-3 h-100 mt-4'>
+              <button className='w-100 h-50 btn btn-primary' type='submit'>Submit!</button>
             </div>
           </div>
-          <div className='col-12 col-lg-9'>
-            <p>Tell us about your clan and competition:</p>
-            <textarea className='w-100 h-75'></textarea>
-          </div>
-          <div className='col-3 h-100 mt-4'>
-            <button className='w-100 h-50 btn btn-primary'>Submit!</button>
-          </div>
-        </div>
+        </form>
       </div>
 
       {/* Tools Section */}
