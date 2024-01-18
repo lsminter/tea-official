@@ -2,6 +2,8 @@ import { Inter } from 'next/font/google'
 import Image from 'next/image'
 import axios from 'axios'
 import { useState } from 'react'
+import { toast } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
 
 import teaJumping from '../../images/teaJumping.png'
 import vetionSitting from '../../images/vetionSitting.png'
@@ -36,7 +38,11 @@ export default function Home() {
           ]
         }]
       }
-    )
+    ).catch((error)=> {
+      console.log(error)
+      toast.success(`Message did not send due to error: ${error}`)
+    })
+    toast.success('Message Sent!'); 
   }
 
   return (
@@ -206,6 +212,7 @@ export default function Home() {
               <textarea className='w-100 h-75' name='message' value={competition} onChange={e => setCompetition(e.target.value)} required/>
             </div>
             <div className='col-3 h-100 mt-4'>
+              <Toaster position="bottom-center" /> 
               <button className='w-100 h-50 btn btn-primary' type='submit'>Submit!</button>
             </div>
           </div>
