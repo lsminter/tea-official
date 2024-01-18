@@ -12,9 +12,6 @@ import vetionAndDragonBackground from '../../images/vetionAndDragonBackground.pn
 import voidwakerBackground from '../../images/voidwakerBackground.png'
 import dt2Background from '../../images/dt2Background.png'
 
-const webhook = process.env.NEXT_PUBLIC_WEBHOOK
-const channelId = process.env.NEXT_PUBLIC_CHANNEL_ID
-
 const inter = Inter({ subsets: ['latin'] })
 // add toast for popup after submitting form
 export default function Home() {
@@ -24,11 +21,10 @@ export default function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log({clanName, rsName, competition})
-    axios.post(webhook, 
+    axios.post(process.env.WEBHOOK, 
       {
         "username": "Mint Tea",
-        "channel_id": channelId,
+        "channel_id": process.env.CHANNEL_ID,
         "embeds": [{
           "fields": [
             {"name": "RSN",

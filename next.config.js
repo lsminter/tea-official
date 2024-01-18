@@ -6,6 +6,10 @@ const nextConfig = {
     ],
   },
   reactStrictMode: true,
+  env: {
+    CHANNEL_ID: process.env.CHANNEL_ID,
+    WEBHOOK: process.env.WEBHOOK
+  }
 }
 
 module.exports = nextConfig
