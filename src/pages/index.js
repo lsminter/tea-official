@@ -41,8 +41,13 @@ export default function Home() {
     ).catch((error)=> {
       console.log(error)
       toast.success(`Message did not send due to error: ${error}`)
-    })
-    toast.success('Message Sent!'); 
+    }).then(() => {
+      setClanName('')
+      setRsName('')
+      setCompetition('')
+    },
+    toast.success('Message Sent!')
+    )
   }
 
   return (
