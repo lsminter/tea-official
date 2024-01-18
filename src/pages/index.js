@@ -21,6 +21,8 @@ import dt2Background from '../../images/dt2Background.png'
 
 const inter = Inter({ subsets: ['latin'] })
 
+// todo: date formatter, get data pulling from site instead of static, format links, background color for recent achievements
+
 export default function Home() {
   const [clanName, setClanName] = useState('')
   const [rsName, setRsName] = useState('')
@@ -151,7 +153,7 @@ export default function Home() {
                 />
               </div>
               <div className='col-12 col-md-8'>
-                <p>We have a competition running right now! This competition is on {recentComp.metric}. Check out the scores on <a href={`https://www.wiseoldman.net/competitions/${recentComp.id}`}>wiseoldman.net</a>. The current top three playres are "{topThree[0]}" in first, "{topThree[1]}" in second, and "{topThree[2]}" brining up third place.</p>
+                <p>We have a competition running right now! This competition is on {recentComp.metric}. Check out the scores on <a href={`https://www.wiseoldman.net/competitions/${recentComp.id}`}>wiseoldman.net</a>. The current top three playres are &quot;{topThree[0]}&quot; in first, &quot;{topThree[1]}&quot; in second, and &quot;{topThree[2]}&quot; brining up third place.</p>
               </div>
             </div>
           </div>
@@ -171,7 +173,7 @@ export default function Home() {
                 />
               </div>
               <div className='col-12 col-md-8'>
-                <p>We don't have a competition running right now. The most recent competition was {recentComp.title}. Check out the scores on <a href={`https://www.wiseoldman.net/competitions/${recentComp.id}`}>wiseoldman.net</a>. The top three players were "{topThree[0]}" in first, "{topThree[1]}" in second, and "{topThree[2]}" brining up third place.</p>
+                <p>We don&apos;t have a competition running right now. The most recent competition was {recentComp.title}. Check out the scores on <a href={`https://www.wiseoldman.net/competitions/${recentComp.id}`}>wiseoldman.net</a>. The top three players were &quot;{topThree[0]}&quot; in first, &quot;{topThree[1]}&quot; in second, and &quot;{topThree[2]}&quot; brining up third place.</p>
               </div>
             </div>
           </div>
