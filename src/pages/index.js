@@ -1,14 +1,12 @@
 import { Inter } from 'next/font/google'
 import Image from 'next/image'
-import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { toast } from 'react-hot-toast';
 import { Toaster } from "react-hot-toast";
 
-import oldManData from '../../library/wiseoldman';
-import {exampleData} from '../../library/exampleData';
-import {exampleEventData} from '../../library/exampleEventData'
-import {exampleAchievements} from '../../library/exampleAchievements'
+import { recentCompetition, allCompetitions } from '../../library/recentComp';
+import {eventDataFetch} from '../../library/recentCompData'
+import {recentAchievements} from '../../library/recentAchievements'
 
 import teaJumping from '../../images/teaJumping.png'
 import vetionSitting from '../../images/vetionSitting.png'
@@ -21,27 +19,20 @@ import dt2Background from '../../images/dt2Background.png'
 
 const inter = Inter({ subsets: ['latin'] })
 
-// todo: date formatter, get data pulling from site instead of static, format links, background color for recent achievements
+
+// todo: format links, background color for recent achievements
 
 export default function Home() {
   const [clanName, setClanName] = useState('')
   const [rsName, setRsName] = useState('')
   const [competition, setCompetition] = useState('')
-  const [compData, setCompData] = useState()
-
-  // Commented these two out due to too many api calls. I'll need to swap recentComp and topThree to api calls using oldmanData.
-  // oldManData('competitions').then((res) => setCompData(res.data[0]))
-  // console.log(compData)
-
-  // recentComp will be our regular api call to https://api.wiseoldman.net/v2/groups/651/competitions, getting the first competition in the array. 
-  const recentComp = exampleData.data[0]
+  
 
   // These are used to determin if the ending date in the competition is a bigger number than the current date. These are used in the conditional rendering down in the Current Event section.
-  const endingCompDate = Date.parse(recentComp.endsAt)
-  const currentDate = Date.now()
+  const endingCompDate = Date.parse(eventDataFetch.endsAt)
+  const currentDate = Date.now()  
 
-  // exampleEventData will need to be a different api call to exampleData. Example data will give us the competition id needed for the top three api call. https://api.wiseoldman.net/v2/competitions/${id}
-  const topThree = exampleEventData.participations.slice(0,3).map((players) => {
+  const topThree = eventDataFetch.participations.slice(0,3).map((players) => {
     return players.player.username
   })
 
@@ -75,7 +66,7 @@ export default function Home() {
   }
 
   return (
-    <div className='py-5 has-bg-img' style={{color: '#FCFF00'}}>
+    <div className='py-5 has-bg-img fw-bold' style={{color: '#FCFF00'}}>
       
       <div className='position-absolute opacity-50 bg-image' style={{zIndex: -10}}>
         <Image
@@ -137,11 +128,11 @@ export default function Home() {
       <div className='container mt-4'>
         <h2>Current Event</h2>
         {/* If endingCompDate is bigger than the currentDate, there is a competition currently running. To get this running on prod, the variables above will need to be changed. */}
-        {endingCompDate < currentDate ? (
+        {endingCompDate > currentDate ? (
           <div>
             <div className='row'>
               <div className='col-5 col-sm-6'>
-                <p>The current event is: {recentComp.title} ➡️</p>
+                <p><a className='text-decoration-none' href={`https://www.wiseoldman.net/competitions/${recentCompetition.id}`} style={{color: '#FCFF00'}}>The current event is: {recentCompetition.title} ➡️</a></p>
               </div>
             </div>
             <div className='row'>
@@ -153,7 +144,7 @@ export default function Home() {
                 />
               </div>
               <div className='col-12 col-md-8'>
-                <p>We have a competition running right now! This competition is on {recentComp.metric}. Check out the scores on <a href={`https://www.wiseoldman.net/competitions/${recentComp.id}`}>wiseoldman.net</a>. The current top three playres are &quot;{topThree[0]}&quot; in first, &quot;{topThree[1]}&quot; in second, and &quot;{topThree[2]}&quot; brining up third place.</p>
+                <p>We have a competition running right now! This competition is on {recentCompetition.metric}. Check out the scores on <a className='text-decoration-none' href={`https://www.wiseoldman.net/competitions/${recentCompetition.id}`} style={{color: '#FCFF00'}}>wiseoldman.net</a>. The current top three playres are &quot;{topThree[0]}&quot; in first, &quot;{topThree[1]}&quot; in second, and &quot;{topThree[2]}&quot; brining up third place.</p>
               </div>
             </div>
           </div>
@@ -161,7 +152,7 @@ export default function Home() {
           <div>
             <div className='row'>
               <div className='col-5 col-sm-6'>
-                <p>The previous event was: {recentComp.title} ➡️</p>
+                <p><a className='text-decoration-none' href={`https://www.wiseoldman.net/competitions/${recentCompetition.id}`} style={{color: '#FCFF00'}}>The previous event was: {recentCompetition.title} ➡️</a></p>
               </div>
             </div>
             <div className='row'>
@@ -173,7 +164,7 @@ export default function Home() {
                 />
               </div>
               <div className='col-12 col-md-8'>
-                <p>We don&apos;t have a competition running right now. The most recent competition was {recentComp.title}. Check out the scores on <a href={`https://www.wiseoldman.net/competitions/${recentComp.id}`}>wiseoldman.net</a>. The top three players were &quot;{topThree[0]}&quot; in first, &quot;{topThree[1]}&quot; in second, and &quot;{topThree[2]}&quot; brining up third place.</p>
+                <p>We don&apos;t have a competition running right now. The most recent competition was {recentCompetition.title}. Check out the scores on <a className="text-decoration-none" href={`https://www.wiseoldman.net/competitions/${recentCompetition.id}`} style={{color: '#FCFF00'}}>wiseoldman.net</a>. The top three players were &quot;{topThree[0]}&quot; in first, &quot;{topThree[1]}&quot; in second, and &quot;{topThree[2]}&quot; brining up third place.</p>
               </div>
             </div>
           </div>
@@ -188,10 +179,10 @@ export default function Home() {
           Recent Events
         </h2>
         <div className='d-flex flex-row flex-nowrap overflow-auto gap-3'>
-          {exampleData.data.slice(0,5).map((events) => {
+          {allCompetitions.slice(0,5).map((events) => {
             return(
               <div key={events.id} className='col-5' style={{minWidth: 290}}>
-                <a href={`https://api.wiseoldman.net/v2/competitions/${events.id}`}>
+                <a className='text-decoration-none' href={`https://www.wiseoldman.net/competitions/${events.id}`} style={{color: '#FCFF00'}}>
                   <p>{events.title} ➡️</p>
                   <Image
                     src={vetionSitting}
@@ -260,7 +251,7 @@ export default function Home() {
       </div>
 
       {/* Tools Section */}
-      <div className='container mt-4 carousel'>
+      {/* <div className='container mt-4 carousel'>
         <h2>Tools</h2>
         <div className='d-flex flex-row flex-nowrap overflow-auto gap-4'>
         <div className='col-4 bg-image card' style={{width: 300, minHeight: 270}}>
@@ -294,17 +285,17 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Recent Activities */}
       <div className='container mt-4 carousel'>
         <h2>Recent Achievements</h2>
         <div className='d-flex flex-row flex-nowrap overflow-auto gap-3 align-items-center'>
-        {exampleAchievements.slice(0,5).map((achievement) => {
+        {recentAchievements.slice(0,5).map((achievement) => {
             return(
-              <div key={achievement.name} className='col-3 bg-success rounded p-2 text-center' style={{width: 250, height: 150}}>
+              <div key={achievement.name} className='col-3 rounded p-2 text-center' style={{width: 250, height: 150, backgroundColor: '#768271'}}>
                 <h5>{achievement.player.username}</h5>
-                <p>{achievement.createdAt}</p>
+                <p>{achievement.createdAt.split('T', 1)}</p>
                 <p>{achievement.name}</p>
               </div>
             )
