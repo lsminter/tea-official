@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { toast } from 'react-hot-toast';
 import { Toaster } from "react-hot-toast";
+import Head from 'next/head';
 
 import { recentCompetition, allCompetitions } from '../../library/recentComp';
 import {eventDataFetch} from '../../library/recentCompData'
@@ -133,7 +134,10 @@ export default function Home() {
   }
 
   return (
-    <div className='py-5 has-bg-img' style={{color: '#FCFF00', fontSize: 'larger'}}>
+    <div className='mt-5 has-bg-img' style={{color: '#FCFF00', fontSize: 'larger'}}>
+      <Head>
+        <title>Official OSRS Clan: Tea</title>
+      </Head>
 
       {/* Background Images */}
       <div className='position-absolute opacity-50 bg-image' style={{zIndex: -10}}>
@@ -162,7 +166,7 @@ export default function Home() {
       {/* Header */}
       <div className='container'>
         <div className='row'>
-          <div className='d-flex col-12 justify-content-center align-items-center rounded' style={{backgroundColor: '#768271', height: 100}}>
+          <div className='d-flex col-12 justify-content-center align-items-center rounded' style={{backgroundColor: '#4C554A', height: 100}}>
             <h1 className='text-center'>
               Tea: A Place For Mains, Irons, and Degens
             </h1>
@@ -172,7 +176,7 @@ export default function Home() {
     
       {/* Bio */}
       <div className='container mt-4'>
-        <div className='rounded p-3' style={{backgroundColor: '#768271'}}>
+        <div className='rounded p-3' style={{backgroundColor: '#4C554A'}}>
           <section>
             <h2>
               Who Are We?
@@ -200,7 +204,7 @@ export default function Home() {
     
       {/* Current Event */}
       <div className='container mt-4'>
-        <div className='rounded p-3' style={{backgroundColor: '#768271'}}>
+        <div className='rounded p-3' style={{backgroundColor: '#4C554A'}}>
           <h2>Current Event</h2>
           <CurrentEvent />
         </div>
@@ -208,7 +212,7 @@ export default function Home() {
 
       {/* Recent events */}
       <div className='container mt-4'>
-        <div className='rounded p-3' style={{backgroundColor: '#768271'}}>
+        <div className='rounded p-3' style={{backgroundColor: '#4C554A'}}>
           <section>
             <h2>
               Recent Events
@@ -235,7 +239,7 @@ export default function Home() {
 
       {/* Discord Invite */}
       <div className='container mt-5'>
-        <div className='rounded p-3' style={{backgroundColor: '#768271'}}>
+        <div className='rounded p-3' style={{backgroundColor: '#4C554A'}}>
           <section>
             <div className='row justify-content-between'>
               <div  className='col-12 col-md-8'>
@@ -243,7 +247,7 @@ export default function Home() {
                   Come Join Us!
                 </h2>
                 <p>
-                  The only requirement for you to join is that you respect the other members and behave yourself. We&apos;re currently looking for new members! If you&apos;re looking for a great community to join, you can find us by searching for &ldquo;Tea&ldquo; in game in the clan tab (green smiley face tab). To join the discord, just <a title="Link to the clan discord" className="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="https://discord.gg/tea-stain" style={{color: "white"}}>click here</a> or on the Discord Image.
+                  The only requirement for you to join is that you respect the other members and behave yourself. We&apos;re currently looking for new members! If you&apos;re looking for a great community to join, you can find us by searching for &ldquo;Tea&ldquo; in game in the clan tab (green smiley face tab). To join the discord, just <a title="clan's discord on discord" className="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="https://discord.gg/tea-stain" style={{color: "white"}}>click here</a> or on the Discord Image.
                 </p>
               </div>
               <a title="Link to the clan discord" href="https://discord.gg/tea-stain" className='col-12 col-md-2' style={{width: 200}}>
@@ -256,7 +260,7 @@ export default function Home() {
       
       {/* Competition Form */}
       <div className='container mt-4'>
-        <div className='rounded p-3' style={{backgroundColor: '#768271'}}>
+        <div className='rounded p-3' style={{backgroundColor: '#4C554A'}}>
           <section>
             <h2>Looking For Competition?</h2>
             <div className='row'>
@@ -275,19 +279,22 @@ export default function Home() {
                     </label>
                   </div>
                   <div className='col-12 col-lg-6'>
-                    <label>Your RSN or Discord Name: </label>
-                    <div className='mb-2'>
-                      <input className='border border-success border-3' type='text' name='rsn' value={rsName} onChange={e => setRsName(e.target.value)} required></input>
-                    </div>
+                    <label>Your RSN or Discord Name: 
+                      <div className='mb-2'>
+                        <input className='border border-success border-3' type='text' name='rsn' value={rsName} onChange={e => setRsName(e.target.value)} required></input>
+                      </div>
+                    </label>
                   </div>
                 </div>
                 <div className='col-12 col-lg-9'>
-                  <label>Tell us about your clan and competition:</label>
-                  <textarea className='border border-success border-3 w-100 h-75' name='message' value={competition} onChange={e => setCompetition(e.target.value)} required/>
+                  <label className='w-100 h-100'>
+                    <p className='pb-0 mb-0'>Tell us about your clan and competition:</p>
+                    <textarea className='border border-success border-3 w-100 h-75' name='message' value={competition} onChange={e => setCompetition(e.target.value)} required/>
+                  </label>
                 </div>
                 <div className='col-3 h-100 mt-4'>
                   <Toaster position="bottom-center" />
-                  <button className='w-100 h-50 btn btn-primary' type='submit'>Submit!</button>
+                  <button className='w-100 h-50 btn btn-primary' type='submit'><p className='h4 pt-2'>Submit!</p></button>
                 </div>
               </div>
             </form>
@@ -334,7 +341,7 @@ export default function Home() {
 
       {/* Recent Achievements */}
       <div className='container mt-4 carousel'>
-        <div className='rounded p-3' style={{backgroundColor: '#768271'}}>
+        <div className='rounded p-3' style={{backgroundColor: '#4C554A'}}>
           <section>
             <h2>Recent Achievements</h2>
             <div className='d-flex flex-row flex-nowrap overflow-auto gap-3 align-items-center'>
@@ -355,15 +362,15 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <div className='container my-5'>
-        <div className='row text-center'>
+      <div className='container my-5 d-flex justify-content-center'>
+        <div className='row rounded text-center w-50 p-3' style={{backgroundColor: '#4C554A'}}>
           <h2>We&apos;ll See You In Game!</h2>
         </div>
       </div>
     
       {/* Site by Lucas Minter */}
       <p>
-        <a title="Link to Lucas Minter's github" className='text-white text-decoration-none' href="https://github.com/lsminter">
+        <a title="Link to Lucas Minter's github" className='text-white text-decoration-none rounded link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover p-1' style={{backgroundColor: '#6b7368'}} href="https://github.com/lsminter">
           Site by Lucas Minter
         </a>
       </p>
