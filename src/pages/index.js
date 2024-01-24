@@ -161,6 +161,21 @@ export default function Home() {
           src={dt2Background}
           alt="login backgroudn for desert treasure two release"
         />
+        <Image
+          className='bg-image img-fluid d-block d-md-none'
+          src={loginBackground}
+          alt="default login screen for old school runescape"
+        />
+        <Image
+          className='bg-image img-fluid d-block d-md-none'
+          src={vetionAndDragonBackground}
+          alt="blender image of vetion and a dragon"
+        />
+        <Image
+          className='bg-image img-fluid d-block d-md-none'
+          src={voidwakerBackground}
+          alt="blender image of a character holding a voidwaker"
+        />
       </div>
 
       {/* Header */}
