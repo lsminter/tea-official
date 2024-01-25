@@ -7,11 +7,10 @@ import Head from 'next/head';
 import { recentCompetition, allCompetitions } from '../../library/recentComp';
 import {eventDataFetch} from '../../library/recentCompData'
 import {recentAchievements} from '../../library/recentAchievements'
+import { iconLinkGetter } from '../../library/getIcon';
 
 import teaJumping from '../../images/teaJumping.png'
-import vetionSitting from '../../images/vetionSitting.png'
 import discordIcon from '../../images/discordIcon.svg'
-import manInFrontOfDragon from '../../images/manInFrontOfDragon.jpeg'
 import loginBackground from '../../images/loginBackground.png'
 import vetionAndDragonBackground from '../../images/vetionAndDragonBackground.png'
 import voidwakerBackground from '../../images/voidwakerBackground.png'
@@ -61,25 +60,33 @@ export default function Home() {
     )
   }
 
-
-
   const CurrentEvent = (title, text) => {
     if (currentDate < startingDate) {
       return(
         <div>
           <div className='row'>
             <div className='col-5 col-sm-6'>
-              <p><a title="Link to take you to the upcoming event on wiseoldman" className='text-decoration-none' href={`https://www.wiseoldman.net/competitions/${recentCompetition.id}`} style={{color: '#FCFF00'}}>The upcoming event is: {recentCompetition.title} ➡️</a></p>
+              <p>The upcoming event is: {recentCompetition.title} ➡️</p>
             </div>
           </div>
           <div className='row'>
-            <div className='col-12 col-md-4'>
-              <Image
-                src={vetionSitting}
-                className='img-fluid rounded'
-                alt="boss or skill of the week"
-              />
-            </div>
+            <a title="Link to take you to the upcoming event page" className='text-decoration-none' href={`/event/${recentCompetition.id}`} style={{color: '#FCFF00'}}>
+              <div className='col-12 col-md-4'>
+                <a 
+                  title="Takes you to the upcoming event page"
+                  href={`/event/${recentCompetition.id}`}
+                >
+                  <Image
+                    src={iconLinkGetter(recentCompetition)}
+                    className='img-fluid rounded'
+                    alt="boss or skill of the week"
+                    width={377}
+                    height={212}
+                    style={{maxHeight: 300}}
+                  />
+                </a>
+              </div>
+            </a>
             <div className='col-12 col-md-8'>
               <p>We don&apos;t have a competition running right now but we have one starting soon! This competition is on {recentCompetition.metric}. Check out the competition on <a title="Link to take you to the upcoming event on wiseoldman" className='link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover' href={`https://www.wiseoldman.net/competitions/${recentCompetition.id}`} style={{color: 'white'}}>wiseoldman.net</a>. Once the competition has started, the scores will be updated periodically and the top three players will be posted here.</p>
             </div>
@@ -91,16 +98,24 @@ export default function Home() {
         <div>
           <div className='row'>
             <div className='col-5 col-sm-6'>
-              <p><a title="Link to take you to the current event on wiseoldman" className='text-decoration-none' href={`https://www.wiseoldman.net/competitions/${recentCompetition.id}`} style={{color: '#FCFF00'}}>The current event is: {recentCompetition.title} ➡️</a></p>
+              <p><a title="Link to take you to the current event on wiseoldman" className='text-decoration-none' href={`/event/${recentCompetition.id}`} style={{color: '#FCFF00'}}>The current event is: {recentCompetition.title} ➡️</a></p>
             </div>
           </div>
           <div className='row'>
             <div className='col-12 col-md-4'>
-              <Image
-                src={vetionSitting}
-                className='img-fluid rounded'
-                alt="boss or skill of the week"
-              />
+              <a 
+                title="Takes you to the current event page"
+                href={`/event/${recentCompetition.id}`}
+              >
+                <Image
+                  src={iconLinkGetter(recentCompetition)}
+                  className='img-fluid rounded'
+                  alt="boss or skill of the week"
+                  width={377}
+                  height={212}
+                  style={{maxHeight: 300}}
+                />
+              </a>
             </div>
             <div className='col-12 col-md-8'>
               <p>We have a competition running right now! This competition is on {recentCompetition.metric}. Check out the scores on <a title="Link to take you to the current event on wiseoldman" className='link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover' href={`https://www.wiseoldman.net/competitions/${recentCompetition.id}`} style={{color: 'white'}}>wiseoldman.net</a>. The current top three playres are &quot;{topThree[0]}&quot; in first, &quot;{topThree[1]}&quot; in second, and &quot;{topThree[2]}&quot; brining up third place.</p>
@@ -118,11 +133,19 @@ export default function Home() {
           </div>
           <div className='row'>
             <div className='col-12 col-md-4'>
-              <Image
-                src={vetionSitting}
-                className='img-fluid rounded'
-                alt="boss or skill of the week"
-              />
+              <a 
+                title='Takes you to the page for the previous competition'
+                href={`/event/${recentCompetition.id}`}
+              >
+                <Image
+                  src={iconLinkGetter(recentCompetition)}
+                  className='img-fluid rounded'
+                  alt="boss or skill of the week"
+                  width={377}
+                  height={212}
+                  style={{maxHeight: 300}}
+                />
+              </a>
             </div>
             <div className='col-12 col-md-8'>
               <p>We don&apos;t have a competition running right now. The most recent competition was {recentCompetition.title}. Check out the scores on <a title="Link to take you to the most recent event on wiseoldman" className='link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover' href={`https://www.wiseoldman.net/competitions/${recentCompetition.id}`} style={{color: 'white'}}>wiseoldman.net</a>. The top three players were &quot;{topThree[0]}&quot; in first, &quot;{topThree[1]}&quot; in second, and &quot;{topThree[2]}&quot; brining up third place.</p>
@@ -134,7 +157,7 @@ export default function Home() {
   }
 
   return (
-    <div className='mt-5 has-bg-img' style={{color: '#FCFF00', fontSize: 'larger'}}>
+    <div className='has-bg-img' style={{color: '#FCFF00', fontSize: 'larger'}}>
       <Head>
         <title>Official OSRS Clan: Tea</title>
       </Head>
@@ -180,8 +203,8 @@ export default function Home() {
 
       {/* Header */}
       <div className='container'>
-        <div className='row'>
-          <div className='d-flex col-12 justify-content-center align-items-center rounded' style={{backgroundColor: '#4C554A', height: 100}}>
+        <div className='row p-2'>
+          <div className='d-flex col-12 justify-content-center align-items-center rounded gap-3' style={{backgroundColor: '#4C554A', height: 100}}>
             <h1 className='text-center'>
               Tea: A Place For Mains, Irons, and Degens
             </h1>
@@ -232,17 +255,32 @@ export default function Home() {
             <h2>
               Recent Events
             </h2>
-            <div className='d-flex flex-row flex-nowrap overflow-auto gap-3'>
-              {allCompetitions.slice(1,6).map((events) => {
+            <div className='d-flex flex-row flex-nowrap overflow-auto gap-4'>
+              {allCompetitions.slice(1,9).map((events) => {
                 return(
-                  <div key={events.id} className='col-5 mb-2' style={{minWidth: 290}}>
-                    <a title="Link to the competition on wiseoldman.net" className='link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover' href={`https://www.wiseoldman.net/competitions/${events.id}`} style={{color: 'white'}}>
-                      <p>{events.title} ➡️</p>
-                      <Image
-                        src={vetionSitting}
-                        className='img-fluid rounded rounded'
-                        alt='boss or skill icon of previous event'
-                      />
+                    <div 
+                      key={events.id}
+                      className='mb-2'
+                    >
+                      <a 
+                        title={`Link to the competition of ${events.title}`}      className='col-4 rounded link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover' 
+                        href={`/event/${events.id}`} 
+                        style={{minWidth: 250}}
+                      >
+                      <p style={{color: 'white'}}>{events.title} ➡️</p>
+                      <div 
+                        className='bg-light text-center rounded p-2 align-items-center' 
+                        style={{width: 200, height: 200}}
+                      >
+                        <Image
+                          src={iconLinkGetter(events)}
+                          className='img-fluid rounded col-12'
+                          alt="boss or skill of the week"
+                          width={377}
+                          height={212}
+                          style={{maxHeight: 150, maxWidth: 150}}
+                        />
+                      </div>
                     </a>
                   </div>
                 )
@@ -377,9 +415,11 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <div className='container my-5 d-flex justify-content-center'>
-        <div className='row rounded text-center w-50 p-3' style={{backgroundColor: '#4C554A'}}>
-          <h2>We&apos;ll See You In Game!</h2>
+      <div className='container my-5'>
+        <div className='row rounded col-10 mx-auto' style={{backgroundColor: '#4C554A'}}>
+          <div className='text-center p-3'>
+            <h2>We&apos;ll See You In Game!</h2>
+          </div>
         </div>
       </div>
     
