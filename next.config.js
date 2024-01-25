@@ -3,6 +3,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       { hostname: 'www.dropbox.com' },
+      { hostname: 'oldschool.runescape.wiki' },
     ],
   },
   reactStrictMode: true,
