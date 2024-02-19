@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@/styles/globals.css'
+import { Analytics } from '@vercel/analytics/react';
 
 import localFont from 'next/font/local'
 import NavBar from '../../library/navBar';
@@ -14,6 +15,7 @@ export default function App({ Component, pageProps }) {
     <main className={rsfont.className}>
       <NavBar />
       <Component {...pageProps} />
+      <Analytics />
     </main>
     )
 }
