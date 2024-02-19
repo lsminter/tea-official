@@ -13,7 +13,7 @@ const rsfont = localFont({
 export default function App({ Component, pageProps }) {
   return (
     <main className={rsfont.className}>
-      <NavBar />
+      {/* <NavBar /> */}
       <Component {...pageProps} />
       <Analytics />
     </main>

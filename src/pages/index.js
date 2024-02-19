@@ -15,6 +15,7 @@ import loginBackground from '../../images/loginBackground.png'
 import vetionAndDragonBackground from '../../images/vetionAndDragonBackground.png'
 import voidwakerBackground from '../../images/voidwakerBackground.png'
 import dt2Background from '../../images/dt2Background.png'
+import kermitSippingTea from '../../images/kermitSippingTea.png'
 
 export default function Home() {
   const [clanName, setClanName] = useState('')
@@ -204,8 +205,14 @@ export default function Home() {
       {/* Header */}
       <div className='container'>
         <div className='row p-2'>
-          <div className='d-flex col-12 justify-content-center align-items-center rounded gap-3' style={{backgroundColor: '#4C554A', height: 100}}>
-            <h1 className='text-center'>
+          <div className='d-flex col-12 justify-content-center align-items-center rounded gap-3' style={{backgroundColor: '#4C554A', height: 80}}>
+            <Image
+                src={kermitSippingTea}
+                width={55}
+                height={50}
+                className='rounded-circle pr-4'
+              />
+            <h1 className='text-center mt-1'>
               Tea: A Place For Mains, Irons, and Degens
             </h1>
           </div>
@@ -304,7 +311,7 @@ export default function Home() {
                 </p>
               </div>
               <a title="Link to the clan discord" href="https://discord.gg/tea-stain" className='col-12 col-md-2' style={{width: 200}}>
-                <Image src={discordIcon} className='img-fluid' alt="Discord Icon"/>
+                <Image src={discordIcon} className='img-fluid text-cetner' alt="Discord Icon"/>
               </a>
             </div>
           </section>
@@ -417,7 +424,7 @@ export default function Home() {
       {/* Footer */}
       <div className='container my-5'>
         <div className='row rounded col-10 mx-auto' style={{backgroundColor: '#4C554A'}}>
-          <div className='text-center p-3'>
+          <div className='text-center p-3 mt-1'>
             <h2>We&apos;ll See You In Game!</h2>
           </div>
         </div>
