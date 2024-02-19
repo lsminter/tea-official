@@ -70,11 +70,11 @@ export default function Home() {
             </div>
           </div>
           <div className='row'>
-            <a title="Link to take you to the upcoming event page" className='text-decoration-none' href={`/event/${recentCompetition.id}`} style={{color: '#FCFF00'}}>
+            <a title="Link to take you to the upcoming event page" className='text-decoration-none' href={`https://www.wiseoldman.net/competitions/${recentCompetition.id}`} style={{color: '#FCFF00'}}>
               <div className='col-12 col-md-4'>
                 <a 
                   title="Takes you to the upcoming event page"
-                  href={`/event/${recentCompetition.id}`}
+                  href={`https://www.wiseoldman.net/competitions/${recentCompetition.id}`}
                 >
                   <Image
                     src={iconLinkGetter(recentCompetition)}
@@ -98,14 +98,14 @@ export default function Home() {
         <div>
           <div className='row'>
             <div className='col-5 col-sm-6'>
-              <p><a title="Link to take you to the current event on wiseoldman" className='text-decoration-none' href={`/event/${recentCompetition.id}`} style={{color: '#FCFF00'}}>The current event is: {recentCompetition.title} ➡️</a></p>
+              <p><a title="Link to take you to the current event on wiseoldman" className='text-decoration-none' href={`https://www.wiseoldman.net/competitions/${recentCompetition.id}`} style={{color: '#FCFF00'}}>The current event is: {recentCompetition.title} ➡️</a></p>
             </div>
           </div>
           <div className='row'>
             <div className='col-12 col-md-4'>
               <a 
                 title="Takes you to the current event page"
-                href={`/event/${recentCompetition.id}`}
+                href={`https://www.wiseoldman.net/competitions/${recentCompetition.id}`}
               >
                 <Image
                   src={iconLinkGetter(recentCompetition)}
@@ -135,7 +135,7 @@ export default function Home() {
             <div className='col-12 col-md-4'>
               <a 
                 title='Takes you to the page for the previous competition'
-                href={`/event/${recentCompetition.id}`}
+                href={`https://www.wiseoldman.net/competitions/${recentCompetition.id}`}
               >
                 <Image
                   src={iconLinkGetter(recentCompetition)}
@@ -264,7 +264,7 @@ export default function Home() {
                     >
                       <a 
                         title={`Link to the competition of ${events.title}`}      className='col-4 rounded link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover' 
-                        href={`/event/${events.id}`} 
+                        href={`https://www.wiseoldman.net/competitions/${events.id}`} 
                         style={{minWidth: 250}}
                       >
                       <p style={{color: 'white'}}>{events.title} ➡️</p>
