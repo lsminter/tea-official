@@ -211,6 +211,7 @@ export default function Home() {
                 width={55}
                 height={50}
                 className='rounded-circle pr-4'
+                alt="Kermit the frog drinking tea"
               />
             <h1 className='text-center mt-1'>
               Tea: A Place For Mains, Irons, and Degens
